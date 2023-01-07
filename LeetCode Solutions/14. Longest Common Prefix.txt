@@ -1,0 +1,35 @@
+public class Solution {
+
+    // I use StringBuilder because we might need to modify a string object multiple times.
+    // strings are immutable while StringBuilder is mutable.
+    public string LongestCommonPrefix(string[] strs) {
+            if (strs.Length == 0) 
+                return "";
+            if(strs.Length==1) 
+                return strs[0];
+
+            // By sorting the array alphabetically:
+            // We know that our first word will have the least amount of characters
+            // We know that our last word will have the highest amount of characters
+            // We know that similar words will be clustered together
+            // By combining the above we can only compare the letters of the first and last word
+            Array.Sort(strs);
+
+            string firstWord = strs[0];
+            string lastWord = strs[strs.Length - 1];
+            StringBuilder strbuilder = new StringBuilder();
+            
+            // We know that the first word has less characters than the last word
+            // Thus, it is impossible to have an IndexOutOfRangeException.
+            // Because the program will be terminated before our index is out of range
+            for (int i = 0; i < firstWord.Length; i++)
+            {
+                if (firstWord[i] != lastWord[i])
+                    break;
+
+                strbuilder.Append(firstWord[i]);
+            }
+
+            return strbuilder.ToString();
+    }
+}

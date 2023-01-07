@@ -1,0 +1,40 @@
+public class Solution {
+        
+        // It is guaranteed that s is a valid roman numeral in the range [1,3999]
+        // Higher to lower value characters from left to right. Some special cases are excluded (IV, IX, XL, XC, CD, CM)
+        // We handle the excluded cases by subtracting the left character from our total value (will be called result) and then adding the value
+        // of the right character to our total value (result). This will effectively deal with out special cases
+    public int RomanToInt(string s) {
+            // A dictionary to store key-value pairs for easier access
+            Dictionary<char, int> romanNumbersDictionary = new Dictionary<char, int> 
+            {
+                {'I',1 },
+                {'V',5 },
+                {'X',10 },
+                {'L',50 },
+                {'C',100 },
+                {'D',500 },
+                {'M',1000 },
+            };
+
+            int result = 0;
+
+            // Adding the last character of our input to the result.
+            // We do this to prevent out of bounds array read with our for-loop
+            result += romanNumbersDictionary[s[s.Length-1]];
+            // Our for-loop doesn't reach the final character of the string to prevent
+            // out of bounds read.
+            for (int i = 0; i < s.Length-1; i++)
+            {
+                // Reading the characters one by one from left to right. 
+                // If the left character has higher value than the right character
+                // Then we add the left character's value to our result
+                if (romanNumbersDictionary[s[i]] >= romanNumbersDictionary[s[i + 1]])
+                    result += romanNumbersDictionary[s[i]];
+                else
+                    result -= romanNumbersDictionary[s[i]];
+            }
+
+            return result;
+    }
+}
