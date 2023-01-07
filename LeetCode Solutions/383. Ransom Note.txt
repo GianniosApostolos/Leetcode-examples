@@ -1,0 +1,50 @@
+public class Solution {
+    public bool CanConstruct(string ransomNote, string magazine) {
+       // If our note requires more letters than we can provide from our magazine
+            // then we can safely assume that we cannot construct the ransom note
+            if (ransomNote.Length > magazine.Length)
+                return false;
+
+
+            //Creating two dictionaries to store all the characters and their count ,of our given strings (ransomNote , magazine)
+            var ransomDictionary = new Dictionary<char, int>();
+            var magazineDictionary = new Dictionary<char, int>();
+
+            /*
+             * We first create the dictionary responsible for storing the characters of magazine and increase their count as we encounter
+             * the same character.
+             * 
+             * We now have a dictionary of all our available characters and their count (how many times we can use each character).
+             */
+
+            foreach (char character in magazine)
+            {
+                if (magazineDictionary.ContainsKey(character))
+                    magazineDictionary[character] += 1;
+                else
+                    magazineDictionary[character] = 1;
+            }
+
+            /* We then create the dictionary responsible for storing the characters of ransomNote and increase their count as we did previously.
+             * Storing each character and its count so we can check how many of each characters we will need in order to construct the ransomNote.
+             * 
+             * While we create the dictionary we perform two checks:
+             * Does the magazineDictionary contain the specific character? If no then we return false because we cannot construct our ransomNote
+             * Does the magazineDictionary contain less specific characters than the ones we need? If yes, then we return false because we cannot
+             * construct a ransomNote if we are missing characters.
+             */
+            foreach (char character in ransomNote)
+            {
+
+                if (ransomDictionary.ContainsKey(character))
+                    ransomDictionary[character] += 1;
+                else
+                    ransomDictionary[character] = 1;
+
+                if (!magazineDictionary.ContainsKey(character) || magazineDictionary[character] < ransomDictionary[character])
+                    return false;
+            }
+
+            return true; 
+    }
+}
