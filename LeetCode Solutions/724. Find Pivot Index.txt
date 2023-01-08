@@ -1,0 +1,31 @@
+public class Solution {
+    public int PivotIndex(int[] nums) {
+            
+            int totalSum = 0;
+            int leftSum = 0;
+
+            // We will use totalSum in order to prerfom calculations later
+            // We can easily get the leftSum by adding values as we iterate through the array
+            // And rightSum = totalSum-leftSum-nums[i] but we don't initialize rightSum
+            foreach (int number in nums)
+                totalSum+= number;
+
+            /* We can remove leftSum+=nums[i]; and replace the i++ from the for-loop with leftSum+=nums[i++]
+            // we would have : 
+                                for(int i = 0; i < nums.Length; leftSum += nums[i++])
+                                    if (leftSum == totalSum -leftSum - nums[i] )
+                                        return i;
+                
+            // But I decided to keep the for-loop as is
+            */
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (leftSum == totalSum -leftSum - nums[i] )
+                    return i;
+
+                leftSum += nums[i];
+            }
+
+            return -1;
+    }
+}
