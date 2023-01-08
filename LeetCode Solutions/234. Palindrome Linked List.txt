@@ -1,0 +1,94 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int val=0, ListNode next=null) {
+ *         this.val = val;
+ *         this.next = next;
+ *     }
+ * }
+ */
+public class Solution {
+    public bool IsPalindrome(ListNode head) {
+
+            List<int> numbersList = new List<int>();
+
+            ListNode node = head;
+            while (node!=null) 
+            {
+
+                numbersList.Add(node.val);
+                node = node.next;
+            }
+
+            int endPoint= numbersList.Count()-1;
+
+            for (int i = 0; i < endPoint; i++)
+            {
+                if (numbersList[i] != numbersList[endPoint])
+                    return false;
+
+                endPoint--;
+            }
+            return true;
+    }
+}
+
+
+
+
+
+public  bool IsPalindrome(ListNode head)
+        {
+            /*
+            // Solution with dictionary.
+            Dictionary<int, int> numbersDictionary = new Dictionary<int, int>();
+            int counter = 0;
+            
+            ListNode tempNode = head;
+            while (tempNode != null)
+            {
+                numbersDictionary.Add(counter,tempNode.val);
+
+                tempNode = tempNode.next;
+                counter++;
+            }
+
+            int endPoint = counter - 1;
+            for (int i = 0; i < endPoint; i++)
+            {
+                if (numbersDictionary[i] != numbersDictionary[endPoint])
+                    return false;
+
+                endPoint--;
+            }
+            return true;
+            */
+
+            //Solution with List instead of Dictionary in order to reduce memory usage.
+
+            List<int> numbersList = new List<int>();
+
+            ListNode node = head;
+            while (node!=null) 
+            {
+
+                numbersList.Add(node.val);
+                node = node.next;
+            }
+
+            int endPoint= numbersList.Count()-1;
+
+            for (int i = 0; i < endPoint; i++)
+            {
+                if (numbersList[i] != numbersList[endPoint])
+                    return false;
+
+                endPoint--;
+            }
+            return true;
+        }
+
+
+

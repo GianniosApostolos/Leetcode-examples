@@ -1,0 +1,18 @@
+public class Solution {
+    public int NumberOfSteps(int num) {
+            
+            int count = 0;
+
+            while (num > 0)
+            {   
+                if (num % 2 == 0) // if the number can be devided by 2 then devide it
+                    num /= 2;
+                else // if the number cannot be devided by 2 then decrease by 1
+                    num--;
+
+                count++; // increase the counter with every loop
+            }
+
+            return count;
+    }
+}
