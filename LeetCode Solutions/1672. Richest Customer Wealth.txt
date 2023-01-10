@@ -1,0 +1,27 @@
+/*
+// This program uses jagged arrays because we do not have a fixed amount of bank accounts per customer
+// For example, customer1 might have 2 accounts with 7,3 and customer2 might have 3 accounts with 3,5,6.
+// Can initialize jagged arrays like: int[][] customerInfo = new int[][] { new int[] {1,2,3} , new int[] {3,2,1} }; 
+*/
+public class Solution {
+
+// This function just reads the values of two arrays and performs addition
+// It stores and increases the maxWealth each time currentCustomerWealth > maxWealth
+
+    public int MaximumWealth(int[][] accounts) {
+            int maxWealth =0;
+            int currentCustomerWealth=0;
+            for (int i = 0; i < accounts.Length; i++)
+            {
+                for (int j = 0; j < accounts[i].Length; j++)
+                {
+                    currentCustomerWealth+= accounts[i][j];
+                    
+                    if(maxWealth<currentCustomerWealth)
+                        maxWealth = currentCustomerWealth;
+                }
+                currentCustomerWealth= 0;
+            }
+            return maxWealth;
+    }
+}
