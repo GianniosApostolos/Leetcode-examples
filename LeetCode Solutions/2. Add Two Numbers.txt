@@ -1,0 +1,54 @@
+/*
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int val=0, ListNode next=null) {
+ *         this.val = val;
+ *         this.next = next;
+ *     }
+ * }
+ */
+
+
+/* We know we can easily "flip" a number by doing:
+	while(num >0)
+	{
+	num % 10;
+	num /= 10;
+	}
+* Of course we need to actually do something with num%10 in order to flip the number but the
+* process is quite easy
+*/
+public class Solution {
+    public ListNode AddTwoNumbers(ListNode l1, ListNode l2) {
+            ListNode resultNode = new ListNode();
+            ListNode finalNode = resultNode;
+
+            int sumOfNodeValues = 0;
+
+            // Continue iterating while there is a value in l1 or in l2 or in sumofNodeValues
+            while ( l1 != null || l2 != null  || sumOfNodeValues > 0)
+            {
+                if (l1 != null)
+                {
+                    sumOfNodeValues += l1.val;
+                    l1 = l1.next;
+                }
+                if (l2 != null)
+                {
+                    sumOfNodeValues += l2.val;
+                    l2= l2.next;
+                }
+                
+                resultNode.next = new ListNode(sumOfNodeValues % 10);
+                sumOfNodeValues /= 10;
+                resultNode = resultNode.next;
+            }
+            // Since startNode = resultNode it means that the first value of startNode is 0 because
+            // we initialized resultNode without assigning any value.
+            // So, in order to get the correct result we need to return startNode.next; Which contains
+            // the values assigned into the while-loop
+            return finalNode.next;
+    }
+}

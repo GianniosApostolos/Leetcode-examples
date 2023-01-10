@@ -1,0 +1,21 @@
+public class Solution {
+    public int[] TwoSum(int[] nums, int target) {
+            // We create a dictionary to store our key-value pairs. number , position in nums Array
+            Dictionary<int, int> traversedElements = new Dictionary<int, int>();
+
+            // We iterate the nums array
+            for (int i = 0; i < nums.Length; i++)
+            {
+                // We look up the Dictionary for Keys that satisfy the condition: target = key1+key2 -> key1 = target-key2
+                // And since each nums[i] is a key then we can replace the above formula with the following if statement
+                // to check if we there is a key in our dictionary that satisfies our condition.
+                if (traversedElements.ContainsKey(target - nums[i]))
+                    return new int[] { traversedElements[target-nums[i]], i };
+
+                // Adding every element to our dictionary. Storing the number(key) and its position(value)
+                    if (!traversedElements.ContainsKey(nums[i]))
+                        traversedElements.Add(nums[i], i);
+            }
+            return null;
+    }
+}

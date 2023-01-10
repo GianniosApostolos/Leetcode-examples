@@ -1,0 +1,31 @@
+public class Solution {
+    public int[] KWeakestRows(int[][] mat, int k) {
+            Dictionary<int, int> numbersDictionary = new Dictionary<int, int>(); // index and their sum
+            
+            int[] result = new int[k];
+            int currentRowResult=0;
+
+
+            // Calculate the sum of each row and store it in a dictionary<index,sum>
+            for (int i = 0; i < mat.Length; i++)
+            {
+                for (int j = 0; j < mat[i].Length; j++)
+                {
+                    currentRowResult += mat[i][j];
+                }
+
+                numbersDictionary.Add(i, currentRowResult);
+                currentRowResult = 0;
+            }
+
+            // Using LINQ, we do the following:
+            // We Order our numbersDictionary by value. So the first index has the smallest value and the last index the largest
+            // We convert our ordered dictionary to a normal dictionary with the same key-value pairs. Our new dictionary will be ordered
+            // We take the (k) first keys (the keys represent the idexes of the matrix and the values the sum of the indexes)
+            // we convert it to array and asign it to the results value
+            result = numbersDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value).Keys.Take(k).ToArray();
+
+            // you can return the LINQ but I prefer asigning it to a variable for more clarity
+            return result;
+    }
+}
