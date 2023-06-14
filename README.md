@@ -1,5 +1,3 @@
 # Leetcode-examples
 
-Started solving LeetCode problems around 5/1/2023
-
-This is where I store all of the Leetcode problems I have solved for future reference and lookup
+This is where I store all of the Leetcode problems I have solved for future reference and lookup.
