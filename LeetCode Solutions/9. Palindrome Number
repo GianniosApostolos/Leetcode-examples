@@ -1,0 +1,27 @@
+public class Solution {
+    public bool IsPalindrome(int x) {
+        
+        // Negative numbers are not palindromes due to having the minus symbol at the front.
+        // I dissagree with this assumption but we can extract this info from the example. 
+        if(x<0)
+        {
+            return false;
+        }
+
+        var reversed=0;
+
+        var initialNum = x; // I want to keep the initial variable for later on. So i cache x's value
+
+        while( x != 0)
+        {
+            var digit = x % 10;
+
+            reversed = reversed * 10 + digit;
+
+            x/=10;
+        }
+
+        
+        return initialNum == reversed;
+    }
+}
