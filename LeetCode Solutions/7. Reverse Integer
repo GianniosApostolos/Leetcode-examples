@@ -1,0 +1,23 @@
+public class Solution {
+    public int Reverse(int x) {
+        
+        int reversedNum =0;
+
+        while(x != 0 )
+        {
+            int digit = x % 10;
+            
+            reversedNum = reversedNum * 10 + digit;
+            
+            x /= 10;
+
+            if(x != 0 && reversedNum > int.MaxValue/10 || x != 0 && reversedNum < int.MinValue/10)
+            {
+                return 0;
+            }
+                         
+        }
+        
+        return reversedNum;
+    }
+}
