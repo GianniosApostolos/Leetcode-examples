@@ -1,0 +1,32 @@
+public class Solution {
+    public int[] PlusOne(int[] digits) {
+
+        // Like doing addition by hand, we start at the end of the number and go from last to first digit.        
+        for(int i=digits.Length-1; i>=0; i--)
+        {
+            // if the number is smaller than 9 then we can just increment it and return it.
+            if(digits[i]<9)
+            {
+                digits[i]++;
+
+                return digits;
+            }
+
+            // If the number is 9 then we set it to zero and continue with the loop.
+            // The next number (towards the left) will increase accordingly and either "return digits", like line 12,
+            // or keep reaching this place until it's over.
+            digits[i]=0;
+        }
+
+        // Reaching the code outside the loop only means one thing. We didn't "return digits" on line 12, so we can assume that
+        // we have effectively turned all of our digits array in zeroes. due to "digits[i]=0;" on line 18.
+        // So we need to account for the number "1" that needs to be placed at the beginning of the number.
+        // E.g. 99 (length 2) + 1 = 1000 (length 2+1)
+        int[] result = new int [digits.Length+1];
+
+        // Just set the first number as 1 because we carried the 1.
+        result[0]=1;
+
+        return result;
+    }
+}
