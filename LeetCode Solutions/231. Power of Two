@@ -1,0 +1,17 @@
+// Simple solution using bit manipulation.
+// Any number in the power of 2 has only 1 bit set.
+// if we subtract 1 from that number then we will have all the bits from the right
+// side of that number flipped to 1.
+// If we perform bitwise AND to these two numbers then the result will be 0
+// E.g.
+// 8 in binary = 1000
+// 8-1=7 in binary 0111
+// 1000 AND
+// 0111
+// 0000
+
+public class Solution {
+    public bool IsPowerOfTwo(int n) {
+        return n > 0 && (n & (n-1)) == 0;
+    }
+}
