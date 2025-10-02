@@ -1,0 +1,62 @@
+// My own solution was using a dictionary. But some people posted a much more elegant solution that is using XOR 
+
+public class Solution {
+    public int SingleNumber(int[] nums) {
+
+        if(nums.Length==1)
+        {
+            return nums[0];
+        }
+
+        var numberDict = new Dictionary<int,int>();
+
+        foreach(var number in nums)
+        {
+            if(numberDict.TryGetValue(number, out var value))
+            {
+                value++;
+                numberDict[number] = value;
+            }
+            else
+            {
+                numberDict.Add(number,1);
+            }
+        }
+
+        foreach(var number in nums)
+        {
+            if(numberDict.TryGetValue(number, out var value))
+            {
+                if(numberDict[number]==1)
+                    return number;
+            }
+        }
+
+        return -1;
+    }
+}
+
+
+
+// Using XOR. This is a much more elegant, faster and more optimized solution.
+// XOR has some really interesting properties.
+// It boils down that XORing a number with 0 returns the Number
+// And that XORing a number with itself returns 0
+// And that the order of operations does not matter at all so we don't even need to sort the array!
+// XORing the whole array will always return the final number as a result
+// https://leetcode.com/problems/single-number/solutions/6928847/video-xor-solution-by-niits-xamt/
+// https://leetcode.com/problems/single-number/solutions/1772139/c-explained-everything-w-why-xor-works-b-6gyl/
+
+public class Solution {
+    public int SingleNumber(int[] nums) {
+
+        int result =0;
+
+        foreach(var number in nums)
+        {
+            result ^= number;
+        }
+
+        return result;
+    }
+}
