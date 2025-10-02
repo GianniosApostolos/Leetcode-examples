@@ -1,0 +1,10 @@
+// First solution that came to mind was to create a HashSet from the array's values.
+// check the number of elements and return accordingly
+
+public class Solution {
+    public bool ContainsDuplicate(int[] nums) {
+        var set = new HashSet<int>(nums);
+
+        return set.Count != nums.Length;
+    }
+}
